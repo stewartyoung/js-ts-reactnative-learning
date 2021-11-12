@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const firstName = "Stewart";
 // "" can be changed with ''
 // semicolons ; optional
