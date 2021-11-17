@@ -21,4 +21,22 @@ const x = 42;
 const explicit = String(42); //explicit == "42"
 const implicit = x + ""; // implicit == "42"
 
+const obj = {
+    firstName: "Stewart",
+    lastName: "Young",
+    isCoding: true,
+    greet: function() {
+        if (this.isCoding) {
+            console.log("Hi " + this.firstName + " " + this.lastName);
+        }
+    },
+    address: {
+        streetNumber: 21,
+        streetName: "Oxford Street"
+    }
+}
+obj.greet();
+console.log(obj.address.streetNumber + " " + obj.address.streetName)
+
+
 export * as syntax from "./syntax";
