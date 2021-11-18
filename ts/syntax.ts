@@ -1,4 +1,5 @@
 #!/usr/bin/env ts-node
+"use strict";
 const first = "Stewart";
 
 const last = "Young";

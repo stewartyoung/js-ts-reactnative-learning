@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use strict';
 const firstName = "Stewart";
 // "" can be changed with ''
 // semicolons ; optional
@@ -51,7 +52,7 @@ obj.greet = function() {
 }
 // equivalent to line 42
 obj.greet();
-const o2 = {};
+const obj2 = {};
 obj["isCoding"] = false;
 
 // inline object declaration
@@ -71,3 +72,51 @@ const obj3 = {
     }
 }
 console.log(obj3.address.streetNumber + " " + obj3.address.streetName)
+
+// object mutation
+const o = {
+    a: "a",
+    b: "b",
+    dummyObj: {
+        a: "a",
+        b: "b",
+    }
+}
+
+// we want
+// o2 = {
+//     a: "a",
+//     b: "b"
+// }
+
+// shallow copy (does not copy nested objects)
+const o2 = Object.assign({}, o);
+o2.dummyObj.a = "b";
+console.log(o2);
+
+// deep copy (copy nested objects)
+function deepCopy(obj) {
+    // check through all values
+    // if values are objects -> deep copy
+    // else return the value
+    const keys = Object.keys(obj);
+    const newObject = {};
+
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        if (typeof obj[key] === 'object') {
+            newObject[key] = deepCopy(obj[key]);
+        } else {
+            newObject[key] = obj[key];
+        }
+    }
+    return newObject;
+}
+console.log(o);
+const o3 = deepCopy(o);
+// o3 is not updated to new value on this change
+// this is deep copy
+// can no longer mutate by reference
+o.dummyObj.a = "new value";
+console.log(o3);
+console.log(o);
