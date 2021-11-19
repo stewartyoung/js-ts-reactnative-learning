@@ -22,11 +22,25 @@ const x = 42;
 const explicit = String(42); //explicit == "42"
 const implicit = x + ""; // implicit == "42"
 
-const obj = {
+interface ISomeObject {
+    firstName: string;
+    lastName: string;
+    isCoding: boolean;
+    greet: {(): void;};
+    address: {
+        streetNumber: number;
+        streetName: string;
+    };
+    dummyObj: {
+        a: string
+    }
+}
+
+const o : any = {
     firstName: "Stewart",
     lastName: "Young",
     isCoding: true,
-    greet: function() {
+    greet: function(): void {
         if (this.isCoding) {
             console.log("Hi " + this.firstName + " " + this.lastName);
         }
@@ -34,10 +48,50 @@ const obj = {
     address: {
         streetNumber: 21,
         streetName: "Oxford Street"
+    },
+    dummyObj: {
+        a: "a"
     }
 }
-obj.greet();
-console.log(obj.address.streetNumber + " " + obj.address.streetName)
+o.greet();
+console.log(o.address.streetNumber + " " + o.address.streetName)
 
+// we want
+// o2 = {
+//     a: "a",
+//     b: "b"
+// }
+
+// shallow copy (does not copy nested objects)
+const o2 = Object.assign({}, o);
+o2.dummyObj.a = "b";
+console.log(o2);
+
+// deep copy (copy nested objects)
+function deepCopy(obj: any) {
+    // check through all values
+    // if values are objects -> deep copy
+    // else return the value
+    const keys: Array<string> = Object.keys(obj);
+    const newObject:{[key:string] : any} = {};
+
+    for (let i = 0; i < keys.length; i++) {
+        const key: string = keys[i];
+        if (typeof obj[key] === 'object') {
+            newObject[key] = deepCopy(obj[key]);
+        } else {
+            newObject[key] = obj[key];
+        }
+    }
+    return newObject;
+}
+console.log(o);
+const o3 = deepCopy(o);
+// o3 is not updated to new value on this change
+// this is deep copy
+// can no longer mutate by reference
+o.dummyObj.a = "new value";
+console.log(o3);
+console.log(o);
 
 export * as syntax from "./syntax";

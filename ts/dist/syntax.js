@@ -17,7 +17,7 @@ for (var i = 0; i < arry.length; i++) {
 var x = 42;
 var explicit = String(42); //explicit == "42"
 var implicit = x + ""; // implicit == "42"
-var obj = {
+var o = {
     firstName: "Stewart",
     lastName: "Young",
     isCoding: true,
@@ -29,8 +29,46 @@ var obj = {
     address: {
         streetNumber: 21,
         streetName: "Oxford Street"
+    },
+    dummyObj: {
+        a: "a"
     }
 };
-obj.greet();
-console.log(obj.address.streetNumber + " " + obj.address.streetName);
+o.greet();
+console.log(o.address.streetNumber + " " + o.address.streetName);
+// we want
+// o2 = {
+//     a: "a",
+//     b: "b"
+// }
+// shallow copy (does not copy nested objects)
+var o2 = Object.assign({}, o);
+o2.dummyObj.a = "b";
+console.log(o2);
+// deep copy (copy nested objects)
+function deepCopy(obj) {
+    // check through all values
+    // if values are objects -> deep copy
+    // else return the value
+    var keys = Object.keys(obj);
+    var newObject = {};
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        if (typeof obj[key] === 'object') {
+            newObject[key] = deepCopy(obj[key]);
+        }
+        else {
+            newObject[key] = obj[key];
+        }
+    }
+    return newObject;
+}
+console.log(o);
+var o3 = deepCopy(o);
+// o3 is not updated to new value on this change
+// this is deep copy
+// can no longer mutate by reference
+o.dummyObj.a = "new value";
+console.log(o3);
+console.log(o);
 exports.syntax = require("./syntax");
