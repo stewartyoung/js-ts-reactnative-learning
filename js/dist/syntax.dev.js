@@ -9,7 +9,9 @@ var firstName = "Stewart"; // "" can be changed with ''
 
 var lastName = 'Young'; // can store a function in an array
 
-var val = 42;
+var val = 42; // let means you can update it
+// const means you can't
+
 var arr = ['string', 42.5, function () {
   console.log('hi');
 }]; // call the function in the array
@@ -114,4 +116,11 @@ var o3 = deepCopy(o); // o3 is not updated to new value on this change
 
 o.dummyObj.a = "new value";
 console.log(o3);
-console.log(o);
+console.log(o); // demonstating prototypal inheritance 
+
+arr = [];
+arr.push("a");
+arr.push("b"); // prints out the methods of this object
+// in this case, array has a lot of built in methods
+
+console.log(arr.__proto__);

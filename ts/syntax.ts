@@ -54,8 +54,8 @@ const o : any = {
     }
 }
 o.greet();
-console.log(o.address.streetNumber + " " + o.address.streetName)
-
+console.log(o.address.streetNumber + " " + o.address.streetName);
+console.log("o", o);
 // we want
 // o2 = {
 //     a: "a",
@@ -65,7 +65,7 @@ console.log(o.address.streetNumber + " " + o.address.streetName)
 // shallow copy (does not copy nested objects)
 const o2 = Object.assign({}, o);
 o2.dummyObj.a = "b";
-console.log(o2);
+console.log("o2 = Object.assign({}, o)", o2);
 
 // deep copy (copy nested objects)
 function deepCopy(obj: any) {
@@ -85,13 +85,13 @@ function deepCopy(obj: any) {
     }
     return newObject;
 }
-console.log(o);
+console.log("o before deep copy", o);
 const o3 = deepCopy(o);
 // o3 is not updated to new value on this change
 // this is deep copy
 // can no longer mutate by reference
 o.dummyObj.a = "new value";
-console.log(o3);
-console.log(o);
+console.log("o3 = deepCopy(o)", o3);
+console.log("o after deepCopy", o);
 
 export * as syntax from "./syntax";

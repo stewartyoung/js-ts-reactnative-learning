@@ -36,6 +36,7 @@ var o = {
 };
 o.greet();
 console.log(o.address.streetNumber + " " + o.address.streetName);
+console.log("o", o);
 // we want
 // o2 = {
 //     a: "a",
@@ -44,7 +45,7 @@ console.log(o.address.streetNumber + " " + o.address.streetName);
 // shallow copy (does not copy nested objects)
 var o2 = Object.assign({}, o);
 o2.dummyObj.a = "b";
-console.log(o2);
+console.log("o2 = Object.assign({}, o)", o2);
 // deep copy (copy nested objects)
 function deepCopy(obj) {
     // check through all values
@@ -63,12 +64,12 @@ function deepCopy(obj) {
     }
     return newObject;
 }
-console.log(o);
+console.log("o before deep copy", o);
 var o3 = deepCopy(o);
 // o3 is not updated to new value on this change
 // this is deep copy
 // can no longer mutate by reference
 o.dummyObj.a = "new value";
-console.log(o3);
-console.log(o);
+console.log("o3 = deepCopy(o)", o3);
+console.log("o after deepCopy", o);
 exports.syntax = require("./syntax");

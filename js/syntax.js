@@ -8,7 +8,9 @@ const lastName = 'Young'
 
 // can store a function in an array
 const val = 42
-const arr = [
+// let means you can update it
+// const means you can't
+let arr = [
     'string',
     42.5,
     function() {console.log('hi');}
@@ -120,3 +122,11 @@ const o3 = deepCopy(o);
 o.dummyObj.a = "new value";
 console.log(o3);
 console.log(o);
+
+// demonstating prototypal inheritance 
+arr = [];
+arr.push("a");
+arr.push("b");
+// prints out the methods of this object
+// in this case, array has a lot of built in methods
+console.log(arr.__proto__);
