@@ -78,5 +78,10 @@ x = x.map(addOne)
 console.log(x);
 x = x.filter(greaterThanFive);
 console.log(x);
+newArr = []
+x.forEach(function(val) {
+    newArr.push(val);
+})
+console.log("newArr:", newArr);
 x = x.reduce(add);
 console.log(x);
