@@ -112,3 +112,23 @@ printThree()
 // api calls are often examples of asynchronous
 
 // callbacks
+
+// promises help avoid callback hell
+
+// example promise code
+const url = 'www.google.com'
+fetch(url)
+    .then(function(res) {
+        return res.json()
+    })
+    .catch(function(err) {
+        return callback(err)
+    })
+    .then(function(json) {
+        return ({
+            importantData: json.importantData
+        })
+    })
+    .then(function(data) {
+        console.log(data)
+    })
