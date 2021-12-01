@@ -85,3 +85,30 @@ x.forEach(function(val) {
 console.log("newArr:", newArr);
 x = x.reduce(add);
 console.log(x);
+
+
+// async
+function printOne() {
+    console.log("One")
+}
+
+function printTwo() {
+    console.log("Two")
+}
+
+async function printThree() {
+    await printTwo()
+    console.log("Three")
+}
+
+// setTimeout(printOne, 1000)
+// setTimeout(printTwo, 0)
+printThree()
+
+// execution stack
+printThree()
+
+// fetch is an asynchronous function
+// api calls are often examples of asynchronous
+
+// callbacks
